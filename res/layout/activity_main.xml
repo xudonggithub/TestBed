@@ -28,6 +28,24 @@
               android:layout_marginLeft="44dp"
               android:layout_toRightOf="@+id/button1"
               android:text="replay2" />
-
+          
+          <TextView  android:id="@+id/textview1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              android:textSize="20sp"
+              android:text="time"
+			/>
+          
+          <TextView  android:id="@+id/longText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/textview1"
+              android:textSize="18sp"
+              android:text="time"
+			/>
+         <RelativeLayout  android:id="@+id/replaced_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></RelativeLayout>
       </RelativeLayout>
 </RelativeLayout>

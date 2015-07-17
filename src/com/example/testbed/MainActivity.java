@@ -1,15 +1,21 @@
 package com.example.testbed;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts.Data;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -18,8 +24,70 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initUI();
+		startRunTimer();
 	}
 
+	boolean stop = false;
+	@Override
+	protected void onPause() {
+		stop = true;
+		super.onPause();
+	}
+	private void startRunTimer() {
+//		new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				while(!stop) {
+//					
+//					 
+//					 MainActivity.this.runOnUiThread(new Runnable() {
+//						
+//						@Override
+//						public void run() {
+//							 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss:SSSZ");
+//							 Date date = new Date(System.currentTimeMillis());
+//							 System.out.println("cxd,:"+formatter.format(date));
+//							 text.setText(formatter.format(date));
+//							 text.invalidate();
+//						}
+//					});
+//					}
+//			}
+//		}).start();
+		
+		new AsyncTask<String, String, String>() {
+
+			@Override
+			protected String doInBackground(String... params) {
+				while(!stop) {
+//				 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss:SSSZ");
+//				 Date date = new Date(System.currentTimeMillis());
+				 String time = String.valueOf(System.currentTimeMillis());//formatter.format(date);
+				 System.out.println("cxd,:"+time);
+				 publishProgress(time);
+				}
+				return null;
+			}
+			
+			@Override
+			protected void onProgressUpdate(String... values) {
+				 text.setText(values[0]);
+				 text.invalidate();
+				super.onProgressUpdate(values);
+			}
+			
+		}.execute(new String[]{null});
+		
+	}
+	
+	
+	
+	private void stopRunTimer() {
+		stop = true;
+	}
+	TextView text ;
+	TextView longText;
 	@SuppressLint("NewApi")
 	private void initUI() {
 		RelativeLayout main = (RelativeLayout)findViewById(R.id.main_layout);
@@ -29,10 +97,13 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				TestCanvas.testRotateImage();
+//				TestCanvas.testRotateImage();
+				stopRunTimer();
 			}
 		});
 		
+		text = (TextView)findViewById(R.id.textview1);
+		longText = (TextView)findViewById(R.id.longText);
 		//test canvase
 		/*final Paint paint = new Paint();
 		paint.setColor(Color.RED);
