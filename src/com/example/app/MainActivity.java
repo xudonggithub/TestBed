@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.testbed.ListTest;
 import com.example.testbed.R;
+import com.example.testbed.SemaphoreTestCase;
 import com.example.testbed.TestByteBuffer;
 import com.example.testbed.TextUiFragment;
 
@@ -17,10 +18,11 @@ import com.example.testbed.TextUiFragment;
 		protected void onCreate(Bundle savedInstanceState) {
 			 super.onCreate(savedInstanceState);
 		     setContentView(R.layout.activity_main);
-		     TestByteBuffer.testByteBuffer();
+//		     TestByteBuffer.testByteBuffer();
 //		     ListTest.testLinkedList();
 		     
 //		     addFragment();
+		     SemaphoreTestCase.Test(null);
 		}
 		
 		public void addFragment() {

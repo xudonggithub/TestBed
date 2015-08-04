@@ -63,4 +63,6 @@ public class TestByteBuffer {
 		}
 		
 	}
+	
+	public static native void testDirectByteBuffer();
 }
