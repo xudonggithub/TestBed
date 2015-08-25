@@ -42,8 +42,9 @@ public class Permutation {
 			srcList.clear();
 			result.add(new ArrayList<Integer>(permList));
 			permList.clear();
-			System.out.println("get result:");
+			System.out.println("---->get result:");
 			printAll(srcList, permList, result);
+			permList = null;
 			return;
 		}
 		else {
