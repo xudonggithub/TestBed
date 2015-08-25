@@ -64,5 +64,24 @@ public class TestByteBuffer {
 		
 	}
 	
+	/***
+	 * 08-17 14:16:13.200: I/System.out(7927): position:4,limit:5
+08-17 14:16:13.200: I/System.out(7927): byte1[0]:0
+08-17 14:16:13.205: I/System.out(7927): byte1[1]:1
+08-17 14:16:13.205: I/System.out(7927): byte1[2]:2
+08-17 14:16:13.205: I/System.out(7927): byte1[3]:3
+08-17 14:16:13.205: I/System.out(7927): byte1[4]:0
+08-17 14:16:13.205: I/System.out(7927): after flip, position:0,limit:2
+08-17 14:16:13.205: I/System.out(7927): after slice, sliceBuffer capacity:2
+08-17 14:16:13.205: I/System.out(7927): sliceBytes[0]:0
+08-17 14:16:13.205: I/System.out(7927): sliceBytes[1]:1
+08-17 14:16:13.205: I/System.out(7927): sliceBytes[2]:2
+08-17 14:16:13.205: I/System.out(7927): sliceBytes[3]:3
+08-17 14:16:13.205: I/System.out(7927): sliceBytes[4]:0
+08-17 14:16:13.205: I/System.out(7927): byte2[0]:0
+08-17 14:16:13.205: I/System.out(7927): byte2[1]:1
+
+	 */
+	
 	public static native void testDirectByteBuffer();
 }
