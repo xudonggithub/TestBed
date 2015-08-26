@@ -1,5 +1,6 @@
 package com.example.testbed;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -66,8 +67,57 @@ public class Permutation {
 		}
 			
 	}
+	
+	public static int question1(int[] inputArray) {
+		int length = inputArray.length;
+		int ret = 0;
+		boolean[] backupArray = new boolean[length];
+		int index = 0;
+		while(index < length && index >= 0) {
+			backupArray[index] = true;
+			index += inputArray[index];
+			if(backupArray[index])
+				return -1;
+			ret ++;
+		}
+		return ret;
+	}
+	
+	public static int question2(int N) {
+		int ret = -1;
+		if (N <= 0) {
+			return ret;
+		}
+		String binaryStr = Integer.toBinaryString(N);
+		System.out.println("binary string:"+binaryStr);
+		char[] binaryChars = binaryStr.toCharArray();
+		int p = 1, k=0, boundary = binaryChars.length / 2 + binaryChars.length % 2;
+		boolean find = true;
+		while(p< boundary) {
+			k = 0;
+			
+			while(k< boundary && k+p < binaryChars.length) {
+				if(binaryChars[k] != binaryChars[k + p]) {
+					find = false;
+					break;
+				}
+				k++;
+			}
+			if(find)
+				return p;
+			p++;
+		}
+		return ret;
+	}
 	public static void test(){
 		 List<Integer> srcList = Arrays.asList(new Integer[]{1,2,3,4});
 		 perm(srcList, new ArrayList<Integer>(), new HashSet<List<Integer>>());
+		 int ret = question1(new int[]{2,3,-1,1,3});
+		 int ret2 = question1(new int[]{1,1,-1,1});
+		 System.out.println("ret="+ret+",ret2"+ret2);
+		 int ret3 = question2(955);
+		 int ret4 = question2(102);
+		 System.out.println("ret3="+ret3+",ret4"+ret4);
 	}
+	
 }
