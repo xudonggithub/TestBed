@@ -50,16 +50,18 @@ public class Permutation {
 		}
 		else {
 			for(int i = 0; i<srcList.size(); i++) {
-				ArrayList<Integer> tempSrcList = new ArrayList<Integer>(srcList.size()-1);
 				Integer item = srcList.get(i);
-				int k=0;
-				while(k<srcList.size())
-				{
-					if(srcList.get(k) != item){
-						tempSrcList.add(srcList.get(k));
+				boolean bSame = false;
+				for (int j = i-1; j >=0; j--) {
+					if(item == srcList.get(j)){
+						bSame = true;
+						break;
 					}
-					k++;
 				}
+				if(bSame)
+					continue;
+				ArrayList<Integer> tempSrcList = new ArrayList<Integer>(srcList);
+				tempSrcList.remove(i);
 				ArrayList<Integer> tempPermList =  new ArrayList<Integer>(permList);
 				tempPermList.add(item);
 				perm(tempSrcList, tempPermList, result);
@@ -76,8 +78,11 @@ public class Permutation {
 		while(index < length && index >= 0) {
 			backupArray[index] = true;
 			index += inputArray[index];
+			if(index < 0 || index >= length)
+				return ret+1;
 			if(backupArray[index])
 				return -1;
+			
 			ret ++;
 		}
 		return ret;
@@ -95,7 +100,7 @@ public class Permutation {
 		boolean find = true;
 		while(p< boundary) {
 			k = 0;
-			
+			find = true;
 			while(k< boundary && k+p < binaryChars.length) {
 				if(binaryChars[k] != binaryChars[k + p]) {
 					find = false;
@@ -109,15 +114,35 @@ public class Permutation {
 		}
 		return ret;
 	}
+	
+	private static long question3() {
+		List<Integer> srcList = Arrays.asList(new Integer[]{5,3,-1,5});
+		HashSet<List<Integer>> resultSet = new HashSet<List<Integer>>();
+		perm(srcList, new ArrayList<Integer>(), resultSet);
+		int index = 0;
+		long max = 0, tempResult = 0;
+		for (List<Integer> list : resultSet) {
+			index = 0;
+			tempResult = 0;
+			while((index+1) < list.size()){
+				tempResult += Math.abs(list.get(index) - list.get(++ index));
+			}
+			if(tempResult > max)
+				max = tempResult;
+		}
+		return max;
+	}
+	
 	public static void test(){
-		 List<Integer> srcList = Arrays.asList(new Integer[]{1,2,3,4});
-		 perm(srcList, new ArrayList<Integer>(), new HashSet<List<Integer>>());
+		 
 		 int ret = question1(new int[]{2,3,-1,1,3});
 		 int ret2 = question1(new int[]{1,1,-1,1});
-		 System.out.println("ret="+ret+",ret2"+ret2);
+		 System.out.println("ret="+ret+",ret2="+ret2);
 		 int ret3 = question2(955);
 		 int ret4 = question2(102);
-		 System.out.println("ret3="+ret3+",ret4"+ret4);
+		 System.out.println("ret3="+ret3+",ret4="+ret4);
+		 long ret5 = question3();
+		 System.out.println("ret5="+ret5);
 	}
 	
 }
