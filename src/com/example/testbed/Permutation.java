@@ -12,7 +12,7 @@ import android.R.integer;
 
 
 public class Permutation {
-	private static void printAll(List<Integer> srcList, List<Integer>permList, Set<List<Integer>> result)
+	private static void printAll(ArrayList<Integer> srcList, ArrayList<Integer>permList, Set<ArrayList<Integer>> result)
 	{
 		String srcString = "";
 		String permString = "";
@@ -32,7 +32,7 @@ public class Permutation {
 		}
 		System.out.println("resString :"+resString);
 	}
-	public static void perm(List<Integer> srcList, List<Integer>permList, Set<List<Integer>> result) {
+	public static void perm(ArrayList<Integer> srcList, ArrayList<Integer>permList, Set<ArrayList<Integer>> result) {
 		System.out.println("--------------------- perm start -----------------");
 		printAll(srcList, permList, result);
 		
@@ -46,6 +46,7 @@ public class Permutation {
 			System.out.println("---->get result:");
 			printAll(srcList, permList, result);
 			permList = null;
+			srcList = null;
 			return;
 		}
 		else {
@@ -66,6 +67,10 @@ public class Permutation {
 				tempPermList.add(item);
 				perm(tempSrcList, tempPermList, result);
 			}
+			srcList.clear();
+			srcList = null;
+			permList.clear();
+			permList = null;
 		}
 			
 	}
@@ -116,8 +121,8 @@ public class Permutation {
 	}
 	
 	private static long question3() {
-		List<Integer> srcList = Arrays.asList(new Integer[]{5,3,-1,5});
-		HashSet<List<Integer>> resultSet = new HashSet<List<Integer>>();
+		ArrayList<Integer> srcList = new ArrayList<Integer>(Arrays.asList(new Integer[]{5,3,-1,5}));
+		HashSet<ArrayList<Integer>> resultSet = new HashSet<ArrayList<Integer>>();
 		perm(srcList, new ArrayList<Integer>(), resultSet);
 		int index = 0;
 		long max = 0, tempResult = 0;
