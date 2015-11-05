@@ -517,7 +517,12 @@ private String filePath = Environment.getExternalStorageDirectory().getPath().co
 
     private boolean setEncoder(int rate)
     {
-        encoder = MediaCodec.createEncoderByType("audio/mp4a-latm");
+        try {
+			encoder = MediaCodec.createEncoderByType("audio/mp4a-latm");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         MediaFormat format = new MediaFormat();
         format.setString(MediaFormat.KEY_MIME, "audio/mp4a-latm");
         format.setInteger(MediaFormat.KEY_CHANNEL_COUNT, 1);
@@ -530,7 +535,12 @@ private String filePath = Environment.getExternalStorageDirectory().getPath().co
 
     private boolean setDecoder(int rate)
     {
-        decoder = MediaCodec.createDecoderByType("audio/mp4a-latm");
+        try {
+			decoder = MediaCodec.createDecoderByType("audio/mp4a-latm");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         MediaFormat format = new MediaFormat();
         format.setString(MediaFormat.KEY_MIME, "audio/mp4a-latm");
         format.setInteger(MediaFormat.KEY_CHANNEL_COUNT, 1);
