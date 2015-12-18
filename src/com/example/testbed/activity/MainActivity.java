@@ -1,8 +1,9 @@
 
-	package com.example.app;
+	package com.example.testbed.activity;
 
 	import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +44,7 @@ import com.example.testbed.TextUiFragment;
 		private void initUI() {
 			View replayBtn = findViewById(R.id.button1);
 			replayBtn.setOnClickListener(this);
+			findViewById(R.id.intentBtn).setOnClickListener(this);
 			RelativeLayout layout = (RelativeLayout) findViewById(R.id.fragment);
 			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(300, 200);
 			lp.addRule(RelativeLayout.CENTER_IN_PARENT);
@@ -55,7 +57,11 @@ import com.example.testbed.TextUiFragment;
 			case R.id.button1:
 				new MultiThreadTestbed().Test();
 				break;
-
+			case R.id.intentBtn:
+				Intent intent = new Intent();
+				intent.setClass(this, ATestActivity.class);
+				startActivity(intent);
+				break;
 			default:
 				break;
 			}

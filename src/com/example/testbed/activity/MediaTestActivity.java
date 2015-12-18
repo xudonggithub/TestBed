@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.testbed.activity;
 
 import java.io.DataInputStream;
 import java.io.File;

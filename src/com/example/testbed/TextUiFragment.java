@@ -1,6 +1,6 @@
 package com.example.testbed;
 
-import com.example.app.MainActivity;
+import com.example.testbed.activity.MainActivity;
 
 import android.app.Activity;
 import android.app.Fragment;

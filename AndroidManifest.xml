@@ -23,7 +23,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name">
         <activity
-            android:name="com.example.app.MainActivity"
+            android:name="com.example.testbed.activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:label="ATestActivity" android:name=".activity.ATestActivity"/>
+        <activity android:label="BTestActivity" android:name=".activity.BTestActivity"/>
+        <activity android:label="CTestActivity" android:name=".activity.CTestActivity"/>
     </application>
 
 </manifest>
