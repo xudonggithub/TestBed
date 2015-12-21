@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="ATestActivity" android:name=".activity.ATestActivity"/>
+        <activity android:label="ATestActivity" android:name=".activity.ATestActivity" android:launchMode="singleTask"/>
         <activity android:label="BTestActivity" android:name=".activity.BTestActivity"/>
         <activity android:label="CTestActivity" android:name=".activity.CTestActivity"/>
     </application>

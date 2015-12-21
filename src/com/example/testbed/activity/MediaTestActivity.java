@@ -519,7 +519,7 @@ private String filePath = Environment.getExternalStorageDirectory().getPath().co
     {
         try {
 			encoder = MediaCodec.createEncoderByType("audio/mp4a-latm");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -537,7 +537,7 @@ private String filePath = Environment.getExternalStorageDirectory().getPath().co
     {
         try {
 			decoder = MediaCodec.createDecoderByType("audio/mp4a-latm");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

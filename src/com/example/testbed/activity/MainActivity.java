@@ -59,6 +59,7 @@ import com.example.testbed.TextUiFragment;
 				break;
 			case R.id.intentBtn:
 				Intent intent = new Intent();
+				intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 				intent.setClass(this, ATestActivity.class);
 				startActivity(intent);
 				break;

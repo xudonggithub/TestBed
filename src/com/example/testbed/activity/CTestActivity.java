@@ -33,7 +33,7 @@ public class CTestActivity extends Activity implements OnClickListener{
 		case R.id.button2:
 		{
 			Intent intent = new Intent();
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 			intent.setClass(this, ATestActivity.class);
 			startActivity(intent);
 		}
@@ -44,7 +44,7 @@ public class CTestActivity extends Activity implements OnClickListener{
 			//use command :adb shell dumpsys activity activities 
 			//to see activities in the task
 			Intent intent = new Intent();
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.setClass(this, ATestActivity.class);
 			startActivity(intent);
 		}

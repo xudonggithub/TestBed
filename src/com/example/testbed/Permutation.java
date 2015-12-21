@@ -2,11 +2,12 @@ package com.example.testbed;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+
 
 import android.R.integer;
 
@@ -31,20 +32,17 @@ public class Permutation {
 			resString = resString.concat(",");
 		}
 		System.out.println("resString :"+resString);
-	}
-	public static void perm(ArrayList<Integer> srcList, ArrayList<Integer>permList, Set<ArrayList<Integer>> result) {
-		System.out.println("--------------------- perm start -----------------");
-		printAll(srcList, permList, result);
-		
+	}//List<Integer> srcList, List<Integer> permlist, Set<List<Integer>> resList
+	public static void perm(ArrayList<Integer> srcList, ArrayList<Integer>permList, Set<ArrayList<Integer>> resList) {
 		if(srcList == null || srcList.size() == 0 || permList == null)
 			return;
 		if(srcList.size() == 1){
 			permList.add(srcList.get(0));
 			srcList.clear();
-			result.add(new ArrayList<Integer>(permList));
+			resList.add(new ArrayList<Integer>(permList));
 			permList.clear();
 			System.out.println("---->get result:");
-			printAll(srcList, permList, result);
+			printAll(srcList, permList, resList);
 			permList = null;
 			srcList = null;
 			return;
@@ -65,7 +63,7 @@ public class Permutation {
 				tempSrcList.remove(i);
 				ArrayList<Integer> tempPermList =  new ArrayList<Integer>(permList);
 				tempPermList.add(item);
-				perm(tempSrcList, tempPermList, result);
+				perm(tempSrcList, tempPermList, resList);
 			}
 			srcList.clear();
 			srcList = null;
@@ -93,6 +91,31 @@ public class Permutation {
 		return ret;
 	}
 	
+	public static int question22(int N) {
+		int ret = -1;
+		if (N <= 0) {
+			return ret;
+		}
+		System.out.println("N="+Integer.toBinaryString(N));
+		int binaryCount = Integer.toBinaryString(N).length();
+		int boundary = binaryCount / 2 + binaryCount % 2;
+		int count = 1, tempL, tempR;
+		while(count < boundary) {
+//			tempL = N << count;
+//			System.out.println("count="+count+",tempL:"+Integer.toBinaryString(tempL));
+			tempR = N >> count;
+			System.out.println("count="+count+",tempR:"+Integer.toBinaryString(tempR));
+
+			tempL = tempR | N;
+			System.out.println("count="+count+",tempL:"+Integer.toBinaryString(tempL));
+			if(tempL == N) {
+				return count;
+			}
+			 count ++;
+		}
+		return ret;
+	}
+	
 	public static int question2(int N) {
 		int ret = -1;
 		if (N <= 0) {
@@ -106,7 +129,7 @@ public class Permutation {
 		while(p< boundary) {
 			k = 0;
 			find = true;
-			while(k< boundary && k+p < binaryChars.length) {
+			while(k+p < binaryChars.length) {
 				if(binaryChars[k] != binaryChars[k + p]) {
 					find = false;
 					break;
@@ -145,9 +168,13 @@ public class Permutation {
 		 System.out.println("ret="+ret+",ret2="+ret2);
 		 int ret3 = question2(955);
 		 int ret4 = question2(102);
-		 System.out.println("ret3="+ret3+",ret4="+ret4);
-		 long ret5 = question3();
-		 System.out.println("ret5="+ret5);
+		 int ret5 = question2(1022);
+		 int ret33 = question22(955);
+		 int ret44 = question22(1022);
+		 System.out.println("ret3="+ret3+",ret4="+ret4+", ret5="+ret5);
+		 System.out.println("ret33="+ret33+",ret44="+ret44);
+//		 long ret5 = question3();
+//		 System.out.println("ret5="+ret5);
 	}
 	
 }
